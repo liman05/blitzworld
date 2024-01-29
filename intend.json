@@ -1,0 +1,30 @@
+{
+    "intents": [
+        {
+            "tag": "greeting",
+            "inputs": ["hello", "hi", "hey"],
+            "responses": ["Hello! How can I assist you?", "Hi there!", "Hey, nice to see you!"]
+        },
+        {
+            "tag": "farewell",
+            "inputs": ["bye", "goodbye", "see you later"],
+            "responses": ["Goodbye! Take care.", "See you later!", "Farewell!"]
+        },
+        {
+            "tag": "thanks",
+            "inputs": ["thank you", "thanks"],
+            "responses": ["You're welcome!", "No problem.", "Glad I could help."]
+        },
+        {
+            "tag": "identify",
+            "inputs": ["who are you","what are you","whats your name", "what should i call you","hey am called name"],
+            "responses": ["i am a chatbot, call me blitzbot", "call me blitzbot, how about you", "i am blitzbot and am happy to talk to you"]
+        },
+        
+        {
+            "tag": "custom",
+            "inputs": ["Tell me a joke", "What's your favorite color?"],
+            "responses": ["Why did the scarecrow win an award? Because he was outstanding in his field!", "I don't have a favorite color, but I like all the colors!"]
+        }
+    ]
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/home.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <title>home</title>
+</head>
+<body>
+    <section id="home">
+        <nav id="nav">
+            
+            <div id="left" class="">
+                <a href="#home" class="nav-link">home</a>
+                <a href="#about">about</a>
+                <a href="#services">services</a>
+                <a href="#contacts">contacts</a>
+                <a href="{% url 'login' %}">login</a>
+                <a href="{% url 'register' %}">register</a>
+                <a href="{% url 'logout' %}">logout</a>
+
+                <span class="span">blitzworld</span>
+               
+            </div>
+        </nav>
+        <div class="contents">
+                <div class="up">
+
+                    <p>welcome to blitz world, we will help you as much as we can feel at home buds</p>
+                    <h3 text-light>start now</h3>
+                    <a href="{% url 'register' %}">begin your journey to blitzworld</a>
+
+                </div>
+                 <div class="menus"> 
+                   <div class="menu">
+                    <a href="{% url 'bot'%}"><h4>blitzbot</h4></a>
+                    <p>want to chat with blitz?,<br> want blitz help? <br>blitz is here for you</p>
+                </div>
+                   <div class="menu bg-light">
+                    <a href="{% url 'roompage' %}"><h4>chatroom</h4></a>
+                    <p>find more chatrooms to suit your taste or according to your domain .meet many people around the world and share knowledge together</p>
+                </div>
+                   <div class="menu">
+                    <a href="{% url 'setting' %}"><h4>settings</h4></a>
+                    <p>want to customize this site to your taste feel free, customize to your desired look</p>
+                </div>
+                   <div class="menu">
+                    <a href="{% url 'profile' %}"><h4>profile</h4></a>
+                    <p>check or update your profile.change your profile</p>
+                </div></div>
+                </div>
+        </div>
+            
+        
+    </section>
+    <section class="two " id="about">
+        <br><br><br><br><br><br>
+        <h2>ABOUT</h2>
+        <P>BlitzBot is a versatile AI-powered tool that combines the power of chatbots and chatrooms to provide a comprehensive and engaging user experience. With its integrated chatbot, BlitzBot can answer your questions in an informative and comprehensive way, even if they are open ended, challenging, or strange. Additionally, BlitzBot's chatrooms foster meaningful connections between individuals with similar interests, facilitating knowledge exchange and community building across diverse domains.</P>
+        <br>
+        <h4>key features</h4>
+        <div class="detail"><b>AI-powered Chatbot: </b>BlitzBot's chatbot utilizes advanced natural language processing (NLP) capabilities to engage in meaningful conversations with users, providing informative and insightful responses to a wide range of inquiries.</div><br>
+        <div class="detail"><b>Domain-Specific Chatrooms:</b> BlitzBot hosts a variety of chatrooms dedicated to specific domains, allowing users to connect with others who share their interests and expertise. These chatrooms serve as vibrant hubs for knowledge sharing, collaboration, and community building.</div><br>
+        <div class="detail"><b>Cross-Domain Interaction:</b> BlitzBot encourages interaction across different domains, fostering a dynamic exchange of ideas and perspectives. Users can seamlessly switch between chatrooms, expanding their knowledge base and broadening their horizons.</div><br>
+
+        <p>Overall, BlitzBot stands as a powerful and versatile AI tool that empowers users to connect, learn, and grow through the exploration of diverse domains and the exchange of knowledge.</p>
+
+    </section>
+    <section class="three mt-30" id="services">
+        <h3>services::::::</h3>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, ab iste! Sed id praesentium iste suscipit eveniet beatae quae corporis nisi eum et libero aspernatur, veniam, impedit tempore iusto laborum?</p>
+        <div class="service">
+            <i class="fa-brands fa-discord"></i>
+            <P>AI POWERED CHATBOT</P></div>
+        <div class="service">
+            <i class="fa-brands fa-slack"></i>
+            <P>Domain-Specific Chatrooms</P></div>
+        <div class="service">
+            <i class="fa-brands fa-docker"></i>
+            <P>Cross-Domain Interaction</P></div>
+    </section>
+    <section class="four d-flex" id="contacts">
+        <h2><b>contacts</b></h2>
+        <p>please contact us if there is any malfunction, problem,questions or suggestions thank you</p>
+        <div class="contact"><i class="fa-solid fa-phone"></i><p>phone number <br> +237 656615764</p></div>
+        <div class="email"><p><i class="fa-solid fa-envelope "></i>email <br> zahrakabiru006@gmail.com</p></div>
+        <div class="addresse"><i class="fa-solid fa-location-dot"></i><p>adresse <br>cameroon baffousam 237</p></div>
+    </section> 
+
+   <script>
+   $(document).ready(function() {
+    // Smooth scrolling when clicking on links
+    $('a.nav-link').on('click', function(event)  {
+        event.preventDefault();
+
+        var target = this.hash;
+        var $target = $(target);
+
+        $('html, body').stop().animate({
+            'scrollTop': $target.offset().top
+        }, 900, 'swing', function() {
+            window.location.hash = target;
+        });
+    });
+});
+   </script>
+</body>
+</html>

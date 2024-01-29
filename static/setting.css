@@ -1,0 +1,39 @@
+
+.info img{
+
+    border-radius: 50%;
+    width: 200px;
+    height: 150px;
+    margin-left: 3%;
+
+}
+
+body{
+    background-image: url(/static/settings.jpg);
+    background-size: cover;
+
+}
+
+.setting{
+    background-color: white;
+    padding: 5px;
+    color: rgb(43, 116, 226);
+    margin-left: 30%;
+    height: 10vh;
+    width: 35%;
+    border: 1px solid rgb(43, 116, 226);
+    border-radius: 10px;
+    border-bottom: none;
+    border-top: none;
+
+    
+
+
+}
+.setting a{
+    text-decoration: none;
+    color: rgb(43, 116, 226);
+}
+.setting p{
+    margin-top: 4%;
+}

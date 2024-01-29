@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .body{
+        border: 2px solid black;
+        width: 75%;
+        margin-left: 10%;
+        padding: 15px;
+        margin-top: 5%;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    .input{
+        margin-bottom: 3%;
+
+    }
+    a{
+        text-decoration: none;
+        background-color: black;
+        color: white;
+        padding: 3px;
+    }
+</style>
+  <div class="body">
+  <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i></a>
+
+    <p>hey welcome to ask about blitzworld,please fill in the form below and you will get a response as quickly as possible via email thanks</p>
+    <form action="" class="form-control">
+        {% csrf_token %}
+        <div class="input">
+            <label for="name">enter username</label>
+            <input type="text">
+        </div>
+        <div class="input">
+            <label for="email">enter your email</label>
+            <input type="email">
+        </div>
+        <div class="input d-flex">
+            <label for="question">question</label>
+            <textarea name="question" id="question" cols="70" rows="10"></textarea>
+        </div>
+        <div class="input">
+            <label for="feedback">feedback optional</label>
+            <input type="text">
+        </div>
+
+        <a href="mailto: zahrakabiru006@gmail.com">send</a>
+    </form>
+  </div>
+{% endblock content %}

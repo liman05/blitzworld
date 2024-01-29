@@ -1,0 +1,218 @@
+{% extends 'homebot.html' %}
+{% block title %}blitzbot{% endblock %}
+{% block styles %}
+<style>
+    body, html {
+      height: 100%;
+    }
+
+    .messages-box {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .messages-list {
+      padding-left: 0;
+    }
+
+    .message {
+      margin-bottom: 15px;
+      list-style: none;
+    }
+
+    .message-text {
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .sent {
+      background-color: #dcf8c6;
+      align-self: flex-end;
+    }
+
+    .received {
+      background-color: #f1f0f0;
+      align-self: flex-start;
+    }
+
+    .message-form {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      background-color: #f8f9fa;
+    }
+
+    .message-input {
+      flex: 1;
+      border-radius: 2px;
+      border-right: none;
+    }
+
+    .btn-send {
+      border-radius: 7px;
+    }
+
+    .chat-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    #speaker{
+      text-decoration: none;
+    }
+   
+  </style>
+   <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+
+{% endblock %}
+
+
+{% block content %}
+<div class="chat-container">
+  <div class="card flex-grow-1">
+    <div class="card-header bg-dark text-white mr-2"><i class="fa-solid fa-kiwi-bird mr-1"></i>BlitzBot 
+    <a href="{% url 'home' %}" class="ml-5 text-light">home</a>
+    <a href="{% url 'roompage' %}" class="ml-5 text-light">chatroom</a></div>
+    <div class="card-body messages-box">
+      <a id="speaker" href="#" onclick="speak()">read <i class="fa-solid fa-volume-low"></i></a>
+     
+      <ul class="list-unstyled messages-list">
+        
+        <li class="message received">
+          <div class="message-text">
+            <div class="message-sender">
+              <b>AI blitzbot</b>
+            </div>
+            <div class="message-content">
+              Hi, I am your blitzbot, i am here for you.<br>
+              is there anything i can help you with?
+            </div>
+          </div>
+        </li>
+      </ul>
+      
+    </div>
+    <br><br>
+    <br><br>
+    <br><br>
+  </div>
+  <form class="message-form">
+    {%csrf_token%}
+    <div class="input-group">     
+      <input type="text" class="form-control message-input p-3 text-dark" placeholder="Type your message...">
+      <div class="input-group-append">
+        <a href="" id="record" class="ml-2">record<i class="fa-solid fa-microphone-lines"></i></a>
+       
+        <button type="submit" class="btn btn-dark btn-send">Send</button>
+      </div>
+    </div>
+  </form>
+</div>
+<script type="importmap">
+  {
+    "imports": {
+      "@google/generative-ai": "https://esm.run/@google/generative-ai"
+    }
+  }
+</script>
+<script type="module">
+  import { GoogleGenerativeAI } from "@google/generative-ai";
+  const API_KEY = "AIzaSyCCxQ0ul8Qp8UgXse6YcQSZ4S5snRx2HHQ"
+
+;
+
+  const genAI = new GoogleGenerativeAI(API_KEY);
+
+ 
+  
+async function run() {
+ 
+  const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+
+  const prompt = message;
+
+  const result = await model.generateContent(prompt);
+  const response = await result.response;
+  const text =
+
+  console.log(text);
+}
+
+run();
+
+</script>
+
+<script type="module">
+    import { GoogleGenerativeAI } from "@google/generative-ai";
+
+  const messagesList = document.querySelector('.messages-list');
+  const messageForm = document.querySelector('.message-form');
+  const messageInput = document.querySelector('.message-input');
+
+  messageForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const message = messageInput.value.trim();
+    if (message.length === 0) {
+      return;
+    }
+
+    const messageItem = document.createElement('li');
+    messageItem.classList.add('message', 'sent');
+    messageItem.innerHTML = `
+        <div class="message-text">
+            <div class="message-sender">
+                <b>You</b>
+            </div>
+            <div class="message-content" id="txt">
+                ${message}
+            </div>
+        </div>`;
+    messagesList.appendChild(messageItem);
+
+    messageInput.value = '';
+
+
+    fetch('', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+        'message': message
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        const response = data.response;
+        const messageItem = document.createElement('li');
+        messageItem.classList.add('message', 'received');
+        messageItem.innerHTML = `
+        <div class="message-text">
+            <div class="message-sender">
+              <b>AI Chatbot</b>
+            </div>
+            <div class="message-content">
+                ${response}
+            </div>
+        </div>
+          `;
+        messagesList.appendChild(messageItem);
+      });
+  });
+  
+  function speak(){
+    const utter = new SpeechSynthesisUtterance();
+    utter.rate = 1.0;
+    utter.volume = 2.0;
+    utter.pitch = 0.5;
+    utter.voice = speechSynthesis.getVoices()[0];
+    utter.text = document.querySelector('#txt').value;
+    speechSynthesis.speak(utter);
+  }
+
+</script>
+
+{% endblock %}

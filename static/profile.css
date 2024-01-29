@@ -1,0 +1,48 @@
+.pic{
+    background-color: rgb(43, 55, 226);
+    height: 35vh;
+    width: 40%;
+    margin-left: 30%; 
+    border-radius: 10px;
+}
+.body{
+    background-image: url(/static/p.jpg);
+    background-size: cover;
+}
+.pic img{
+    border-radius: 50%;
+    width: 50%;
+    height: 65%;
+    margin-top: 10%;
+    margin-left: 28%;
+}
+.infos{
+    margin-left: 30%;
+    border: 1px solid rgb(43, 55, 226);
+    width: 40%;
+    border-radius: 10px;
+    /* margin-top: 10%; */
+    height: 50vh;
+    
+}
+.infos a{
+    text-decoration: none;
+    color: rgb(43, 55, 226);
+    border: 1px solid rgb(43, 55, 226);
+    padding: 4px;
+    margin-left: 2%;
+    border-radius: 5px;
+}
+.info{
+    margin-left: 4%;
+    margin-bottom: 15px;
+    padding: 5px;
+    color: rgb(43, 55, 226);   
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.info p{
+    color: rgb(43, 55, 226);
+    
+    
+    
+}
